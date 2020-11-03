@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+50.times do 
+  date = Faker::Date.in_date_period
+  price_total = rand(25000).to_d
+  Booking.create(start_date: date, end_date: date + rand(15), price_total: price_total, price_paid: price_total - rand(price_total))
+end

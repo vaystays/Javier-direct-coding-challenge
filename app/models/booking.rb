@@ -13,4 +13,9 @@ class Booking < ApplicationRecord
   # )
   enum status: %w[paid_in_full unpaid partially_paid]
 
+  def update_status
+  end
+
+  def update_price_remaining
+  end
 end

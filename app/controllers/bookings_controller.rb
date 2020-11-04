@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   def index
-    bookings = Booking.where(status: params[:filter])
+    bookings = Booking.all
 
     render json: bookings, status: 200
   end

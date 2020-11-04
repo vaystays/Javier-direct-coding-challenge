@@ -6,8 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-50.times do 
+20.times do 
   date = Faker::Date.in_date_period
   price_total = rand(25000).to_d
-  Booking.create(start_date: date, end_date: date + rand(15), price_total: price_total, price_paid: price_total - rand(price_total))
+  booking = Booking.create(check_in: date, check_out: date + rand(15), price_total: price_total, price_paid: price_total - rand(price_total))
+  booking.update_status
+  booking.update_price_remaining
 end
+
+20.times do 
+  date = Faker::Date.in_date_period
+  price_total = rand(25000).to_d
+  booking = Booking.create(check_in: date, check_out: date + rand(15), price_total: price_total, price_paid: price_total)
+  booking.update_status
+  booking.update_price_remaining
+end
+
+20.times do 
+  date = Faker::Date.in_date_period
+  price_total = rand(25000).to_d
+  booking = Booking.create(check_in: date, check_out: date + rand(15), price_total: price_total, price_paid: 0)
+  booking.update_status
+  booking.update_price_remaining
+end
+

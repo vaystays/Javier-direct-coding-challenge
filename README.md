@@ -13,16 +13,19 @@ Instructions:
 2. Run `bundle install`
 3. Run `rails db:create`
 4. Run `rails db:migrate`
-5. Run `rails db:seed`
+5. Run `bundle exec rspec`
 
-CHOOSE 4 out of these 6 test questions to complete. After completing send your answers in an email to ryan@getdirect.io
+The goal of this challenge is to get all of the rspec tests to pass.
+There are 4 tests related to the `bookings_controller`, you can find these tests in the `bookings_controller_spec.rb`
 
-  1. Write a class method in app/models/booking.rb that takes two parameters, a start date and an end date. This method should return all bookings that check in within that date range. 
+There will be 3 steps necessary to get these tests to pass.
+  1. Write an instance method on the booking model that updates a booking's `price_remaining` attribute to equal the difference between the price_total and price_paid attributes.
+  2. Write an instance method on the booking model that will update the status of the booking to 'paid_in_full', 'unpaid' or 'partially_paid' depending on the `price_remaining` attribute. If `price_remaining` is equal to `price_total`, the booking is paid in full. If `price_paid` is equal to zero, the booking is unpaid. Else, the booking has been partially paid. 
+  3. Edit the index method on the bookings_controller to accept a param of filter if the param is not nil, and to return the correct bookings.
+
+After completing these 3 steps, run `bundle exec rspec` and all of your tests should pass successfully. The `bookings_controller_spec.rb` test uses the `seed.rb` file to seed in 60 different bookings when you are running the test. The tests makes a GET request to the bookings index and they will check if the count of the results sent from the request match according to the filter that is passed. You will also need to find a way to get your instance methods to update your booking objects after the seed file creates them.
   
-  2. Write an instance method in app/models/booking.rb that returns a json containing three fields: `price_total` `price_paid` and `price_remaining`. The value of each field should be the string representation of the corresponding attribute of Booking, formatted as currency("$99.99"). Make sure the values are prefixed with a dollar sign and rounded to two decimal places. 
+If you can't get the tests to pass, please still submit a PR with the work you did. I would recommend leaving comments that explain what you were trying to do and why you did it.
 
-  3. Write an instance method that updates a booking's `price_remaining` attribute to equal the difference between the price_total and price_paid attributes.
-
-  4. Write an instance method that will update the status of the booking to 'paid_in_full', 'unpaid' or 'partially_paid' depending on the `price_remaining` attribute. If `price_remaining` is equal to `price_total`, the booking is paid in full. If `price_paid` is equal to zero, the booking is unpaid. Else, the booking has been partially paid. 
-
-  5. Write a class method, that takes one argument, that returns all bookings that have a status of `paid_in_full`, `partially_paid` or `unpaid` based on the argument. 
+After completing open up a PR on this repo for the Direct team to review.
+Any questions please email ryan@getdirect.io

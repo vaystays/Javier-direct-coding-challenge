@@ -10,23 +10,17 @@
   date = Faker::Date.in_date_period
   price_total = rand(25000).to_d
   booking = Booking.create(check_in: date, check_out: date + rand(15), price_total: price_total, price_paid: price_total - rand(price_total))
-  booking.update_status
-  booking.update_price_remaining
 end
 
 20.times do 
   date = Faker::Date.in_date_period
   price_total = rand(25000).to_d
   booking = Booking.create(check_in: date, check_out: date + rand(15), price_total: price_total, price_paid: price_total)
-  booking.update_status
-  booking.update_price_remaining
 end
 
 20.times do 
   date = Faker::Date.in_date_period
   price_total = rand(25000).to_d
   booking = Booking.create(check_in: date, check_out: date + rand(15), price_total: price_total, price_paid: 0)
-  booking.update_status
-  booking.update_price_remaining
 end
 

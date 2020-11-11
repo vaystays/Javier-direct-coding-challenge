@@ -20,7 +20,7 @@ There are 4 tests related to the `bookings_controller`, you can find these tests
 
 There will be 3 steps necessary to get these tests to pass.
   1. Write an instance method on the booking model that updates a booking's `price_remaining` attribute to equal the difference between the price_total and price_paid attributes.
-  2. Write an instance method on the booking model that will update the status of the booking to 'paid_in_full', 'unpaid' or 'partially_paid' depending on the `price_remaining` attribute. If `price_remaining` is equal to `price_total`, the booking is paid in full. If `price_paid` is equal to zero, the booking is unpaid. Else, the booking has been partially paid. 
+  2. Write an instance method on the booking model that will update the status of the booking to 'paid_in_full', 'unpaid' or 'partially_paid' depending on the `price_remaining` attribute. If `price_remaining` is equal to 0, the booking is paid in full. If `price_remaining` is equal to `price_total`, the booking is unpaid. Else, the booking has been partially paid. 
   3. Edit the index method on the bookings_controller to accept a param of filter if the param is not nil, and to return the correct bookings.
 
 After completing these 3 steps, run `bundle exec rspec` and all of your tests should pass successfully. The `bookings_controller_spec.rb` test uses the `seed.rb` file to seed in 60 different bookings when you are running the test. The tests makes a GET request to the bookings index and they will check if the count of the results sent from the request match according to the filter that is passed. You will also need to find a way to get your instance methods to update your booking objects after the seed file creates them.

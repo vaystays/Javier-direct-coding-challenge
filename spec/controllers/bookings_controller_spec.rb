@@ -3,6 +3,13 @@ RSpec.describe BookingsController do
   before(:all) do
     Booking.destroy_all
     Rails.application.load_seed
+
+    # Update the price remaining after we load the bookings.
+    Booking.all.each { |b| 
+      b.update_price_remaining 
+      b.update_status 
+    }
+
   end
 
   describe 'GET index' do
